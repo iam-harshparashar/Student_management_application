@@ -1,0 +1,50 @@
+
+<div class="container">
+    <h1 class="text-center m-3">Search Your Result</h1>
+    <div class="row d-flex justify-content-center m-3">
+        <div class="col-md-4">
+            <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+                <input class="form-control" type="text" [(ngModel)]="rollNo" name="rollNo" placeholder="Enter Roll Number...">
+            </form>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center m-3">
+        <div class="col-md-12 d-flex justify-content-center align-items-center">
+            <h3 class="text-center" *ngIf="!marksData">{{message}}</h3>
+            <img *ngIf="!marksData" class="img-fluid" src="../assets/student.webp"/>
+            <div class="card" *ngIf="marksData">
+                <div class="card-header">
+                    <h6 class="text-center">Name: {{marksData.name}}</h6>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Physics</th>
+                            <th scope="col">Chemistry</th>
+                            <th scope="col">Mathematics</th>
+                            <th scope="col">Computer Science</th>
+                            <th scope="col">Total Percentage</th>
+                            <th scope="col">Total Marks/400</th>
+                            <th scope="col">Status</th>
+                
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th>{{marksData.physics}}</th>
+                            <td>{{marksData.chemistry}}</td>
+                            <td>{{marksData.maths}}</td>
+                            <td>{{marksData.computer}}</td>
+                            <td>{{(marksData.physics+marksData.chemistry+marksData.maths+marksData.computer)*100/400}}</td>
+                            <td>{{marksData.physics+marksData.chemistry+marksData.maths+marksData.computer}}</td>
+                            <td>{{(marksData.physics+marksData.chemistry+marksData.maths+marksData.computer)>=200?"Pass":"Fail"}}</td>
+                            
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

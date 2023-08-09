@@ -1,0 +1,101 @@
+<div class="text-center" ><button class="btn btn-primary " (click)="onAddStudent()">Add New Student</button></div>
+
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display': display}">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Add row to new table</h4>
+          <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+            <form #studentForm="ngForm" (ngSubmit)="postData(studentForm.value)">
+                <div class="form-group d-flex align-items-center my-2">
+                    <div class="col-md-5">
+                        <label>Roll Number: </label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="number" class="form-control" placeholder="Enter Marks for Roll Number..." name="rollno" ngModel>
+                    </div>
+                </div>
+                <div class="form-group d-flex align-items-center my-2">
+                    <div class="col-md-5">
+                        <label>Name: </label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="text" class="form-control" placeholder="Enter Marks for Name..." name="name" ngModel>
+                    </div>
+                </div>
+                <div class="form-group d-flex align-items-center my-2">
+                    <div class="col-md-5">
+                        <label>Physics Marks: </label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="number" class="form-control" placeholder="Enter Marks for Physics..." name="physics" ngModel>
+                    </div>
+                </div>
+                <div class="form-group d-flex align-items-center my-2">
+                    <div class="col-md-5">
+                        <label>Chemistry Marks: </label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="number" class="form-control" placeholder="Enter Marks for Chemistry.." name="chemistry" ngModel>
+                    </div>
+                </div>
+                <div class="form-group d-flex align-items-center my-2">
+                    <div class="col-md-5">
+                        <label>Mathematics Marks: </label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="number" class="form-control" placeholder="Enter Marks for Mathematics..." name="maths" ngModel>
+                    </div>
+                </div>
+                <div class="form-group d-flex align-items-center my-2">
+                    <div class="col-md-5">
+                        <label>Computer Science Marks: </label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="number" class="form-control" placeholder="Enter Marks for Computer Science..." name="computer" ngModel>
+                    </div>
+                </div>
+                <div class="text-end">
+                    <button type="submit" class="btn btn-primary">{{editMode ? 'Update ' :'Add '}}</button>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row d-flex justify-content-center m-3">
+    <div class="col-md-12">
+        <div class="card" *ngIf="marksData">
+           <div class="card-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Roll Number</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Physics</th>
+                        <th scope="col">Chemistry</th>
+                        <th scope="col">Mathematics</th>
+                        <th scope="col">Computer Science</th>
+                        <th scope="col">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let i of marksData">
+                        <td>{{i.rollno}}</td>
+                        <td>{{i.name}}</td>
+                        <td>{{i.physics}}</td>
+                        <td>{{i.chemistry}}</td>
+                        <td>{{i.maths}}</td>
+                        <td>{{i.computer}}</td>
+                        <td><button class=" btn btn-primary mx-2" (click)="onEditClicked(i.id)">Edit krlo</button>
+                            <button class=" btn btn-danger mx-2" (click)="deleteMarksData(i.id)">Delete krlo</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+</div>
